@@ -1,0 +1,99 @@
+/* src/pages/HomePage.css */
+
+/* ── Hero ── */
+.hero {
+  position: relative;
+  min-height: 520px;
+  display: flex;
+  align-items: center;
+  margin-top: var(--nav-h);
+  background: url('https://images.unsplash.com/photo-1531415074968-036ba1b575da?w=1400&q=80') center/cover no-repeat;
+}
+.hero-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(20,92,34,0.88) 0%, rgba(26,122,46,0.7) 100%);
+}
+.hero-content {
+  position: relative;
+  z-index: 1;
+  color: #fff;
+  padding: 80px 20px;
+}
+.hero-badge {
+  display: inline-block;
+  margin-bottom: 18px;
+  font-size: 0.85rem;
+}
+.hero-content h1 {
+  font-size: clamp(2rem, 5vw, 3.5rem);
+  line-height: 1.15;
+  margin-bottom: 18px;
+  max-width: 600px;
+}
+.hero-content p {
+  font-size: 1.1rem;
+  opacity: 0.88;
+  max-width: 480px;
+  margin-bottom: 32px;
+}
+.hero-actions { display: flex; gap: 14px; flex-wrap: wrap; }
+.btn-outline-white {
+  display: inline-flex;
+  align-items: center;
+  padding: 10px 22px;
+  border-radius: var(--radius);
+  border: 2px solid rgba(255,255,255,0.7);
+  color: #fff;
+  font-weight: 600;
+  font-size: 0.95rem;
+  cursor: pointer;
+  text-decoration: none;
+  transition: all 0.18s;
+}
+.btn-outline-white:hover { background: rgba(255,255,255,0.15); }
+
+/* ── Section headings ── */
+.section-title {
+  font-size: 1.9rem;
+  color: var(--green-dark);
+  margin-bottom: 32px;
+}
+.section-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 28px;
+}
+.section-header .section-title { margin-bottom: 0; }
+
+/* ── How it works ── */
+.how-it-works { padding: 72px 20px; }
+.steps .step-card {
+  background: var(--white);
+  border-radius: var(--radius-lg);
+  padding: 32px 24px;
+  border: 1px solid var(--border);
+  transition: box-shadow 0.2s;
+}
+.steps .step-card:hover { box-shadow: var(--shadow-md); }
+.step-icon { font-size: 2.5rem; margin-bottom: 12px; }
+.step-num  { font-size: 0.78rem; font-weight: 700; text-transform: uppercase; color: var(--accent); letter-spacing: 0.08em; }
+.step-card h3 { font-size: 1.1rem; margin: 6px 0 8px; color: var(--green-dark); }
+.step-card p  { font-size: 0.9rem; color: var(--text-muted); }
+
+/* ── Featured turfs ── */
+.featured-turfs {
+  background: var(--bg);
+  padding: 20px 20px 72px;
+}
+
+/* ── CTA Banner ── */
+.cta-banner {
+  background: linear-gradient(135deg, var(--green-dark) 0%, var(--green) 100%);
+  color: #fff;
+  text-align: center;
+  padding: 72px 20px;
+}
+.cta-banner h2 { font-size: 2rem; margin-bottom: 12px; }
+.cta-banner p  { font-size: 1rem; opacity: 0.85; margin-bottom: 28px; }

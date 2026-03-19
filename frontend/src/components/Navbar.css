@@ -1,0 +1,105 @@
+/* src/components/Navbar.css */
+.navbar {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  height: var(--nav-h);
+  background: var(--white);
+  border-bottom: 2px solid var(--green);
+  z-index: 1000;
+  box-shadow: var(--shadow-sm);
+}
+
+.navbar-inner {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+}
+
+/* Logo */
+.navbar-logo {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-heading);
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--green-dark);
+  letter-spacing: 0.04em;
+}
+.logo-icon { font-size: 1.6rem; }
+
+/* Links */
+.navbar-links {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  list-style: none;
+}
+
+.navbar-links li a,
+.navbar-links li span {
+  padding: 6px 12px;
+  border-radius: 8px;
+  font-size: 0.93rem;
+  font-weight: 500;
+  color: var(--text);
+  transition: background 0.15s, color 0.15s;
+}
+.navbar-links li a:hover { background: var(--green-light); color: var(--green-dark); }
+.navbar-links li a.active { color: var(--green-dark); font-weight: 600; }
+
+.navbar-user {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.user-greeting {
+  font-size: 0.88rem;
+  color: var(--text-muted);
+  font-weight: 500;
+}
+
+/* Hamburger (mobile) */
+.hamburger {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  gap: 5px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 4px;
+}
+.hamburger span {
+  display: block;
+  width: 24px; height: 2px;
+  background: var(--text);
+  border-radius: 2px;
+  transition: all 0.25s;
+}
+.hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+.hamburger.open span:nth-child(2) { opacity: 0; }
+.hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+@media (max-width: 768px) {
+  .hamburger { display: flex; }
+  .navbar-links {
+    position: absolute;
+    top: var(--nav-h);
+    left: 0; right: 0;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 4px;
+    background: var(--white);
+    border-bottom: 2px solid var(--green);
+    padding: 16px 20px 20px;
+    display: none;
+    box-shadow: var(--shadow-md);
+  }
+  .navbar-links.open { display: flex; }
+  .navbar-links li { width: 100%; }
+  .navbar-links li a { display: block; }
+  .navbar-user { flex-direction: column; align-items: flex-start; gap: 8px; }
+}

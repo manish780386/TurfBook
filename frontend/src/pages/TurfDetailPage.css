@@ -1,0 +1,57 @@
+/* src/pages/TurfDetailPage.css */
+.breadcrumb {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  margin-bottom: 24px;
+}
+.breadcrumb a { color: var(--green); }
+.breadcrumb a:hover { text-decoration: underline; }
+
+.detail-grid {
+  display: grid;
+  grid-template-columns: 1fr 340px;
+  gap: 28px;
+  align-items: start;
+}
+
+.detail-img-wrap {
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  height: 360px;
+}
+.detail-img-wrap img { width: 100%; height: 100%; object-fit: cover; }
+
+.detail-name     { font-size: 1.8rem; color: var(--green-dark); margin-bottom: 6px; }
+.detail-location { color: var(--text-muted); font-size: 0.95rem; }
+
+/* Booking panel */
+.booking-panel { padding: 28px; position: sticky; top: calc(var(--nav-h) + 20px); }
+
+.booking-panel-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 4px;
+}
+.panel-price {
+  font-family: var(--font-heading);
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--green-dark);
+}
+.panel-price small { font-size: 0.85rem; font-weight: 400; }
+
+.detail-features {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  font-size: 0.92rem;
+  color: var(--text);
+}
+
+@media (max-width: 800px) {
+  .detail-grid { grid-template-columns: 1fr; }
+  .booking-panel { position: static; }
+  .detail-img-wrap { height: 240px; }
+}

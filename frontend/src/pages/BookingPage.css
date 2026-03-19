@@ -1,0 +1,95 @@
+/* src/pages/BookingPage.css */
+.booking-title {
+  font-size: 2rem;
+  color: var(--green-dark);
+  margin-bottom: 20px;
+}
+
+.booking-turf-info {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 20px;
+  margin-bottom: 24px;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.booking-form { padding: 32px; }
+
+.slot-hint { color: var(--text-muted); font-size: 0.9rem; font-style: italic; }
+
+.slots-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
+  margin-top: 8px;
+}
+
+.slot-btn {
+  padding: 10px 6px;
+  border-radius: var(--radius);
+  border: 1.5px solid var(--border);
+  background: var(--white);
+  cursor: pointer;
+  font-family: var(--font-body);
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--text);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  transition: all 0.15s;
+}
+.slot-btn:hover:not(:disabled) {
+  border-color: var(--green);
+  background: var(--green-light);
+  color: var(--green-dark);
+}
+.slot-btn.selected {
+  background: var(--green);
+  border-color: var(--green);
+  color: #fff;
+}
+.slot-btn.booked {
+  background: #f0f0f0;
+  border-color: #ddd;
+  color: #aaa;
+  cursor: not-allowed;
+}
+.slot-btn small { font-size: 0.7rem; font-weight: 400; }
+
+/* Legend */
+.slot-legend {
+  display: flex;
+  gap: 20px;
+  margin-top: 16px;
+  margin-bottom: 8px;
+  flex-wrap: wrap;
+}
+.legend-item {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.82rem;
+  color: var(--text-muted);
+}
+.legend-item::before {
+  content: '';
+  display: inline-block;
+  width: 14px; height: 14px;
+  border-radius: 4px;
+  border: 1.5px solid;
+}
+.legend-item.available::before   { background: var(--white); border-color: var(--border); }
+.legend-item.selected-leg::before { background: var(--green); border-color: var(--green); }
+.legend-item.booked-leg::before  { background: #f0f0f0; border-color: #ddd; }
+
+@media (max-width: 600px) {
+  .slots-grid { grid-template-columns: repeat(3, 1fr); }
+  .booking-form { padding: 20px; }
+}
+@media (max-width: 400px) {
+  .slots-grid { grid-template-columns: repeat(2, 1fr); }
+}

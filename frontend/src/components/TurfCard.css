@@ -1,0 +1,46 @@
+/* src/components/TurfCard.css */
+.turf-card { display: flex; flex-direction: column; }
+
+.turf-card-img-wrap {
+  height: 190px;
+  overflow: hidden;
+}
+.turf-card-img-wrap img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  transition: transform 0.35s ease;
+}
+.turf-card:hover .turf-card-img-wrap img { transform: scale(1.04); }
+
+.turf-card-body {
+  padding: 18px 20px 20px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.turf-card-name {
+  font-size: 1.15rem;
+  font-weight: 600;
+  color: var(--green-dark);
+}
+.turf-card-location { font-size: 0.85rem; color: var(--text-muted); }
+.turf-card-desc     { font-size: 0.9rem; color: var(--text-muted); flex: 1; }
+
+.turf-card-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 12px;
+  padding-top: 12px;
+  border-top: 1px solid var(--border);
+}
+
+.turf-price {
+  font-family: var(--font-heading);
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: var(--green-dark);
+}
+.turf-price small { font-size: 0.75rem; font-weight: 400; margin-left: 2px; }

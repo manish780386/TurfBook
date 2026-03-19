@@ -1,0 +1,52 @@
+/* src/components/Footer.css */
+.footer {
+  background: var(--green-dark);
+  color: rgba(255,255,255,0.85);
+  margin-top: auto;
+}
+
+.footer-inner {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr;
+  gap: 40px;
+  padding: 48px 20px 32px;
+}
+
+.footer-brand .footer-logo {
+  font-family: var(--font-heading);
+  font-size: 1.4rem;
+  color: #fff;
+  display: block;
+  margin-bottom: 10px;
+  letter-spacing: 0.04em;
+}
+.footer-brand p { font-size: 0.9rem; opacity: 0.75; }
+
+.footer-links h4 {
+  font-family: var(--font-heading);
+  font-size: 1rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 14px;
+}
+.footer-links ul { list-style: none; }
+.footer-links ul li { margin-bottom: 8px; }
+.footer-links ul li a {
+  font-size: 0.9rem;
+  color: rgba(255,255,255,0.75);
+  transition: color 0.15s;
+}
+.footer-links ul li a:hover { color: #fff; }
+
+.footer-bottom {
+  border-top: 1px solid rgba(255,255,255,0.15);
+  text-align: center;
+  padding: 14px 20px;
+  font-size: 0.83rem;
+  opacity: 0.6;
+}
+
+@media (max-width: 640px) {
+  .footer-inner { grid-template-columns: 1fr; gap: 24px; padding-bottom: 24px; }
+}
