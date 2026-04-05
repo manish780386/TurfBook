@@ -82,6 +82,7 @@ CORS_ALLOWED_ORIGINS = [
     'http://127.0.0.1:3000',
     'http://localhost:5174',
    'https://turfbook-umber.vercel.app',
+   "https://*.vercel.app",
 ]
 CORS_ALLOW_CREDENTIALS = True
 
@@ -97,6 +98,10 @@ SESSION_COOKIE_SAMESITE = 'None'
 CSRF_COOKIE_SAMESITE = 'None'
 SESSION_COOKIE_HTTPONLY = True
 CSRF_COOKIE_HTTPONLY = False
+
+SESSION_COOKIE_SECURE = True
+
+CSRF_COOKIE_SECURE = True
 
 # Django REST Framework
 REST_FRAMEWORK = {
