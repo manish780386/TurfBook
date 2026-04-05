@@ -1,7 +1,0 @@
-services:
-  - type: web
-    name: TurfBook
-    runtime: python
-    pythonVersion: "3.11.9"
-    buildCommand: "./build.sh"
-    startCommand: "gunicorn backend.turf_project.turf_project.wsgi:application"
