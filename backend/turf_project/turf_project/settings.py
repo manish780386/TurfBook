@@ -83,6 +83,9 @@ CORS_ALLOWED_ORIGINS = [
     'http://localhost:5174',
    'https://turfbook-umber.vercel.app',
    "https://*.vercel.app",
+   'https://turfbook-git-main-manish-danges-projects.vercel.app',
+   'https://turfbook-qe8u08zvx-manish-danges-projects.vercel.app',
+   
 ]
 CORS_ALLOW_CREDENTIALS = True
 
