@@ -1,12 +1,11 @@
 import axios from 'axios'
 
 const api = axios.create({
-  baseURL: import.meta.env.VITE_API_URL || 'http://localhost:8000/api',  // 127.0.0.1 ki jagah localhost
+  baseURL: import.meta.env.VITE_API_URL || 'http://localhost:8000/api',
   withCredentials: true,
   headers: { 'Content-Type': 'application/json' },
 })
 
-// Cookie se CSRF token nikalta hai
 function getCookie(name) {
   let cookieValue = null
   if (document.cookie && document.cookie !== '') {
@@ -22,7 +21,6 @@ function getCookie(name) {
   return cookieValue
 }
 
-// Har POST/PUT/DELETE request pe CSRF token attach karo
 api.interceptors.request.use((config) => {
   if (['post', 'put', 'patch', 'delete'].includes(config.method)) {
     const csrf = getCookie('csrftoken')
@@ -32,5 +30,10 @@ api.interceptors.request.use((config) => {
   }
   return config
 })
+
+// ✅ Ye add kiya
+export async function initCSRF() {
+  await api.get('/csrf/')
+}
 
 export default api
