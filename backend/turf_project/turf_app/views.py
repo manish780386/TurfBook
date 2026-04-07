@@ -17,15 +17,17 @@ from .serializers import (
     ContactQuerySerializer,
 )
 
-
 @method_decorator(ensure_csrf_cookie, name='dispatch')
 class GetCSRFTokenView(APIView):
     permission_classes = [AllowAny]
 
     def get(self, request):
-        return Response({'csrfToken': get_token(request)})
+        token = get_token(request)
+        response = Response({'csrfToken': token})
+        response['X-CSRFToken'] = token
+        return response
 
-
+@method_decorator(ensure_csrf_cookie, name='dispatch')
 class RegisterView(APIView):
     permission_classes = [AllowAny]
 
@@ -39,7 +41,7 @@ class RegisterView(APIView):
             )
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
-
+@method_decorator(ensure_csrf_cookie, name='dispatch') 
 class LoginView(APIView):
     permission_classes = [AllowAny]
 

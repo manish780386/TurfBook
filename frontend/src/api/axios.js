@@ -31,9 +31,12 @@ api.interceptors.request.use((config) => {
   return config
 })
 
-// ✅ Ye add kiya
 export async function initCSRF() {
-  await api.get('/csrf/')
+  const response = await api.get('/csrf/')
+  const token = response.headers['x-csrftoken']
+  if (token) {
+    api.defaults.headers.common['X-CSRFToken'] = token
+  }
 }
 
 export default api
