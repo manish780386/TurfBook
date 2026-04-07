@@ -7,6 +7,7 @@ from rest_framework import status
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework.permissions import IsAuthenticated, AllowAny, IsAdminUser
+from rest_framework_simplejwt.tokens import RefreshToken
 
 from .models import Turf, Booking, ContactQuery
 from .serializers import (
@@ -50,23 +51,20 @@ class LoginView(APIView):
         password = request.data.get('password', '')
 
         if not username or not password:
-            return Response(
-                {'error': 'Username aur password required hai.'},
-                status=status.HTTP_400_BAD_REQUEST,
-            )
+            return Response({'error': 'Username aur password required hai.'}, status=400)
 
         user = authenticate(request, username=username, password=password)
         if user is not None:
-            login(request, user)
-            return Response(
-                {'message': 'Login successful!', 'user': UserSerializer(user).data},
-                status=status.HTTP_200_OK,
-            )
-        return Response(
-            {'error': 'Invalid username ya password.'},
-            status=status.HTTP_401_UNAUTHORIZED,
-        )
-
+            refresh = RefreshToken.for_user(user)
+            return Response({
+                'message': 'Login successful!',
+                'user': UserSerializer(user).data,
+                'tokens': {
+                    'access': str(refresh.access_token),
+                    'refresh': str(refresh),
+                }
+            })
+        return Response({'error': 'Invalid username ya password.'}, status=401)
 
 class LogoutView(APIView):
     permission_classes = [IsAuthenticated]
