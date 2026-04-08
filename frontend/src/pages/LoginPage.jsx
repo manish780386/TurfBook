@@ -33,7 +33,7 @@ export default function LoginPage() {
   }
 
   return (
-    <div className="auth-page page-padding">
+    <div className="auth-page page-padding ">
       <div className="auth-card card">
         <div className="auth-header">
           <span className="auth-icon">🏏</span>
