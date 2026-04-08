@@ -9,9 +9,9 @@ export default function LoginPage() {
   const { login } = useAuth()
   const navigate  = useNavigate()
 
-  const [form, setForm]           = useState({ username: '', password: '' })
+  const [form, setForm]             = useState({ username: '', password: '' })
   const [submitting, setSubmitting] = useState(false)
-  const [error, setError]         = useState('')
+  const [error, setError]           = useState('')
 
   const handleChange = (e) =>
     setForm(prev => ({ ...prev, [e.target.name]: e.target.value }))
@@ -22,7 +22,8 @@ export default function LoginPage() {
     setError('')
     try {
       const res = await api.post('/login/', form)
-      login(res.data.user)
+      // ✅ tokens bhi pass karo
+      login(res.data.user, res.data.tokens)
       navigate('/')
     } catch (err) {
       setError(err.response?.data?.error || 'Login failed. Check your credentials.')
