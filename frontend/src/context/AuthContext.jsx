@@ -1,10 +1,10 @@
 import { createContext, useContext, useState, useEffect } from 'react'
-import api from '../api/axios.js'  // ← apna sahi path daalo
+import api from '../api/axios.js'
 
 const AuthContext = createContext(null)
 
 export function AuthProvider({ children }) {
-  const [user, setUser]     = useState(null)
+  const [user, setUser]       = useState(null)
   const [loading, setLoading] = useState(true)
 
   useEffect(() => {

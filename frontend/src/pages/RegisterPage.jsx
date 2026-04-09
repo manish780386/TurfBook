@@ -2,15 +2,17 @@
 import { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import api from '../api/axios'
+import { useAuth } from '../context/AuthContext'  // ✅ add kiya
 import './AuthPages.css'
 
 export default function RegisterPage() {
   const navigate = useNavigate()
+  const { login } = useAuth()  // ✅ add kiya
 
-  const [form, setForm]           = useState({ username: '', email: '', password: '', confirm: '' })
+  const [form, setForm]             = useState({ username: '', email: '', password: '', confirm: '' })
   const [submitting, setSubmitting] = useState(false)
-  const [error, setError]         = useState('')
-  const [success, setSuccess]     = useState('')
+  const [error, setError]           = useState('')
+  const [success, setSuccess]       = useState('')
 
   const handleChange = (e) =>
     setForm(prev => ({ ...prev, [e.target.name]: e.target.value }))
@@ -24,13 +26,14 @@ export default function RegisterPage() {
     setSubmitting(true)
     setError('')
     try {
-      await api.post('/register/', {
+      const res = await api.post('/register/', {
         username: form.username,
         email: form.email,
         password: form.password,
       })
-      setSuccess('Registration successful! Redirecting to login…')
-      setTimeout(() => navigate('/login'), 1800)
+      // ✅ tokens save karo aur seedha home pe bhejo
+      login(res.data.user, res.data.tokens)
+      navigate('/')
     } catch (err) {
       const data = err.response?.data
       if (typeof data === 'object') {
