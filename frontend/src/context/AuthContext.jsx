@@ -1,10 +1,10 @@
 import { createContext, useContext, useState, useEffect } from 'react'
-import api from '../api/axios.js'
+import api from '../api/axios.js'  // ← apna sahi path daalo
 
 const AuthContext = createContext(null)
 
 export function AuthProvider({ children }) {
-  const [user, setUser] = useState(null)
+  const [user, setUser]     = useState(null)
   const [loading, setLoading] = useState(true)
 
   useEffect(() => {
@@ -31,7 +31,7 @@ export function AuthProvider({ children }) {
     setUser(userData)
   }
 
-  const logout = async () => {
+  const logout = () => {
     localStorage.removeItem('access_token')
     localStorage.removeItem('refresh_token')
     setUser(null)

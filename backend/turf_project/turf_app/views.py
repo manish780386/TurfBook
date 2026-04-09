@@ -1,8 +1,4 @@
 from django.contrib.auth import authenticate, login, logout
-from django.middleware.csrf import get_token
-from django.views.decorators.csrf import ensure_csrf_cookie
-from django.utils.decorators import method_decorator
-
 from rest_framework import status
 from rest_framework.views import APIView
 from rest_framework.response import Response
@@ -18,17 +14,14 @@ from .serializers import (
     ContactQuerySerializer,
 )
 
-@method_decorator(ensure_csrf_cookie, name='dispatch')
+
 class GetCSRFTokenView(APIView):
     permission_classes = [AllowAny]
 
     def get(self, request):
-        token = get_token(request)
-        response = Response({'csrfToken': token})
-        response['X-CSRFToken'] = token
-        return response
+        return Response({'message': 'ok'})
 
-@method_decorator(ensure_csrf_cookie, name='dispatch')
+
 class RegisterView(APIView):
     permission_classes = [AllowAny]
 
@@ -36,13 +29,18 @@ class RegisterView(APIView):
         serializer = RegisterSerializer(data=request.data)
         if serializer.is_valid():
             user = serializer.save()
-            return Response(
-                {'message': 'Registration successful!', 'user': UserSerializer(user).data},
-                status=status.HTTP_201_CREATED,
-            )
+            refresh = RefreshToken.for_user(user)
+            return Response({
+                'message': 'Registration successful!',
+                'user': UserSerializer(user).data,
+                'tokens': {
+                    'access': str(refresh.access_token),
+                    'refresh': str(refresh),
+                }
+            }, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
-@method_decorator(ensure_csrf_cookie, name='dispatch') 
+
 class LoginView(APIView):
     permission_classes = [AllowAny]
 
@@ -66,11 +64,11 @@ class LoginView(APIView):
             })
         return Response({'error': 'Invalid username ya password.'}, status=401)
 
+
 class LogoutView(APIView):
-    permission_classes = [IsAuthenticated]
+    permission_classes = [AllowAny]
 
     def post(self, request):
-        logout(request)
         return Response({'message': 'Logout successful.'}, status=status.HTTP_200_OK)
 
 
